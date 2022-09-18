@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crud</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <form action="/post-crud" method="POST">
+                <div class="form-group">
+                    <div class="col-12 mt-3"> Thêm tài khoản mới </div>
+                    <label for="exampleInputTentk">Tên đăng nhập </label>
+                    <input type="text" class="form-control" name="ten_tk" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputMatkhau">Mật Khẩu</label>
+                    <input type="password" class="form-control" name="matkhau" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="inputrole">Loại tài khoản</label>
+                    <select name="roleid" class="form-control">
+                        <option value="1">Quản trị viên</option>
+                        <option value="2">Nhân viên</option>
+                        <option value="3">Khách hàng</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Thêm Tài Khoản</button>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
