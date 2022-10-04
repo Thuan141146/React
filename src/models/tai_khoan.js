@@ -14,9 +14,16 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   tai_khoan.init({
+    email: DataTypes.STRING,
     ten_tk: DataTypes.STRING,
     matkhau: DataTypes.STRING,
-    roleid: DataTypes.STRING
+    diachi: DataTypes.STRING,
+    gioitinh: DataTypes.STRING,
+    sdt: DataTypes.STRING,
+    anh: DataTypes.STRING,
+    khu: DataTypes.STRING,
+    roleid: DataTypes.STRING,
+    keyRole: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'tai_khoan',

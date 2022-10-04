@@ -4,7 +4,7 @@ import db from '../models/index';
 
 
 const salt = bcrypt.genSaltSync(10);
-
+// nodejs
 let createNewUser = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -23,7 +23,7 @@ let createNewUser = async (data) => {
     })
 
 }
-
+//nodejs
 let hasUserPassword = (matkhau) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -37,7 +37,7 @@ let hasUserPassword = (matkhau) => {
     })
 
 }
-
+// nodejs
 let getAllUser = () => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -51,6 +51,7 @@ let getAllUser = () => {
         }
     })
 }
+// nodejs
 let getUserInfoById = (userId) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -72,6 +73,7 @@ let getUserInfoById = (userId) => {
     })
 
 }
+// nodejs
 let updateUserData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -95,6 +97,7 @@ let updateUserData = (data) => {
         }
     })
 }
+// nodejs
 let deleteUserById = (userid) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -113,10 +116,13 @@ let deleteUserById = (userid) => {
         }
     })
 }
+
 module.exports = {
     createNewUser: createNewUser,
     getAllUser: getAllUser,
     getUserInfoById: getUserInfoById,
     updateUserData: updateUserData,
     deleteUserById: deleteUserById,
+
+
 }

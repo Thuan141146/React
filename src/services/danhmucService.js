@@ -1,0 +1,111 @@
+import db from "../models/index";
+///////////////////////////////
+///////////danh muc////////////
+///////////////////////////////
+/// all danh muc
+let GetAllDanhMuc = (danhmucId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let danhmuc = '';
+            if (danhmucId === 'ALL') {
+                danhmuc = await db.danh_muc.findAll({
+
+                })
+            }
+            if (danhmucId && danhmucId !== 'ALL') {
+                danhmuc = await db.danh_muc.findOne({
+                    where: { id: danhmucId }
+                })
+            }
+            resolve(danhmuc)
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+/// new
+let createNewDanhMuc = (data) => {
+    return new Promise(async (resolve, reject) => {
+
+        await db.danh_muc.create({
+            TEN_DM: data.TEN_DM,
+            ANH: data.ANH
+        })
+
+        resolve({
+            errCode: 0,
+            message: 'ok'
+        })
+    }
+    )
+}
+//toploaisk
+let getTopDanhMucHome = (limitInput) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let topdanhmuc = await db.danh_muc.findAll({
+                limit: limitInput,
+                raw: true,
+                nest: true
+            })
+            resolve({
+                errCode: 0,
+                data: topdanhmuc,
+            })
+        } catch (e) {
+            reject(e);
+
+        }
+    })
+}
+//////////////////////////////
+///////////loai sk////////////
+//////////////////////////////
+/// all loai sk
+let GetAllLoaiSK = (loaiskId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let loaisk = '';
+            if (loaiskId === 'ALL') {
+                loaisk = await db.loai_sk.findAll({
+
+                })
+            }
+            if (loaiskId && loaiskId !== 'ALL') {
+                loaisk = await db.loai_sk.findOne({
+                    where: { id: loaiskId }
+                })
+            }
+            resolve(loaisk)
+
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+/// new
+let createNewLoaiSuKien = (data) => {
+    return new Promise(async (resolve, reject) => {
+
+        await db.loai_sk.create({
+            TEN_LSK: data.TEN_LSK,
+            ANH: data.ANH,
+            MO_TA: data.MO_TA,
+        })
+
+        resolve({
+            errCode: 0,
+            message: 'ok'
+        })
+    }
+    )
+}
+module.exports = {
+    GetAllDanhMuc: GetAllDanhMuc,
+    createNewDanhMuc: createNewDanhMuc,
+
+    getTopDanhMucHome: getTopDanhMucHome,
+    ////////////////////loai sk
+    GetAllLoaiSK: GetAllLoaiSK,
+    createNewLoaiSuKien: createNewLoaiSuKien,
+}
