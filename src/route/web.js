@@ -30,6 +30,7 @@ let initWebRoutes = (app) => {
     ///loaisk
     router.post('/api/create-new-LoaiSK', danhmucController.handlecreateNewLoaiSK);
     router.get('/api/get-all-LoaiSK', danhmucController.handleGetAllLoaiSK);
+    router.get('/api/top-toploaisk-home', danhmucController.getLoaiSKHome);
     //mon
     router.get('/api/get-all-mon', monController.handleGetAllMon);
     return app.use("/", router);

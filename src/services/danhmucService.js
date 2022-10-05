@@ -100,12 +100,31 @@ let createNewLoaiSuKien = (data) => {
     }
     )
 }
+///tp loai sk
+let getTopLoaiSKHome = (limitInput) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let toploaisk = await db.loai_sk.findAll({
+                limit: limitInput,
+                raw: true,
+                nest: true
+            })
+            resolve({
+                errCode: 0,
+                data: toploaisk,
+            })
+        } catch (e) {
+            reject(e);
+
+        }
+    })
+}
 module.exports = {
     GetAllDanhMuc: GetAllDanhMuc,
     createNewDanhMuc: createNewDanhMuc,
-
     getTopDanhMucHome: getTopDanhMucHome,
     ////////////////////loai sk
     GetAllLoaiSK: GetAllLoaiSK,
     createNewLoaiSuKien: createNewLoaiSuKien,
+    getTopLoaiSKHome: getTopLoaiSKHome,
 }

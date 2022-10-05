@@ -49,7 +49,7 @@ let getDanhMucHome = async (req, res) => {
 ////////////////////////////
 //lay all su kien
 let handleGetAllLoaiSK = async (req, res) => {
-    let id = req.body.id;
+    let id = req.query.id;
 
     if (!id) {
         return res.status(200).json({
@@ -72,6 +72,22 @@ let handlecreateNewLoaiSK = async (req, res) => {
     // console.log(message);
     return res.status(200).json(message);
 }
+let getLoaiSKHome = async (req, res) => {
+    let limit = req.query.limit;
+    if (!limit) limit = 10;
+    try {
+        let toploaisk = await danhmucService.getTopLoaiSKHome(+limit)
+        return res.status(200).json(toploaisk)
+
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Lỗi từ máy chủ!!!!'
+        })
+
+    }
+}
 module.exports = {
     handleGetAllDanhMuc: handleGetAllDanhMuc,
     handlecreateNewDanhMuc: handlecreateNewDanhMuc,
@@ -79,6 +95,7 @@ module.exports = {
     //loaisk
     handlecreateNewLoaiSK: handlecreateNewLoaiSK,
     handleGetAllLoaiSK: handleGetAllLoaiSK,
+    getLoaiSKHome: getLoaiSKHome,
 
 
 }
