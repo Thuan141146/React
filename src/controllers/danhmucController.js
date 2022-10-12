@@ -88,6 +88,51 @@ let getLoaiSKHome = async (req, res) => {
 
     }
 }
+///all su kien
+let handleGetAllSK = async (req, res) => {
+    try {
+        let sukien = await danhmucService.getAllsukien();
+        return res.status(200).json(sukien)
+
+    } catch (e) {
+        console.log(e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Lỗi sever',
+            loaisk: []
+        })
+    }
+}
+//create info su kien
+let handlecreateInforSK = async (req, res) => {
+    try {
+        let response = await danhmucService.createInfoSK(req.body);
+        return res.status(200).json(response);
+    } catch (e) {
+        console.log(e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Lỗi sever',
+        })
+    }
+
+}
+let getDetailSKById = async (req, res) => {
+    try {
+        let infor = await danhmucService.DetailSKById(req.query.id)
+        return res.status(200).json(
+            infor
+        )
+
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Loi tu server'
+        })
+
+    }
+}
 module.exports = {
     handleGetAllDanhMuc: handleGetAllDanhMuc,
     handlecreateNewDanhMuc: handlecreateNewDanhMuc,
@@ -96,6 +141,8 @@ module.exports = {
     handlecreateNewLoaiSK: handlecreateNewLoaiSK,
     handleGetAllLoaiSK: handleGetAllLoaiSK,
     getLoaiSKHome: getLoaiSKHome,
-
+    handleGetAllSK: handleGetAllSK,
+    handlecreateInforSK: handlecreateInforSK,
+    getDetailSKById: getDetailSKById,
 
 }

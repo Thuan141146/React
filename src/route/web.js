@@ -3,6 +3,7 @@ import homeController from "../controllers/homeController.js";
 import userController from "../controllers/userController";
 import danhmucController from "../controllers/danhmucController";
 import monController from "../controllers/monController";
+import khubanController from "../controllers/khubanController"
 let router = express.Router();
 
 let initWebRoutes = (app) => {
@@ -31,8 +32,22 @@ let initWebRoutes = (app) => {
     router.post('/api/create-new-LoaiSK', danhmucController.handlecreateNewLoaiSK);
     router.get('/api/get-all-LoaiSK', danhmucController.handleGetAllLoaiSK);
     router.get('/api/top-toploaisk-home', danhmucController.getLoaiSKHome);
+    router.get('/api/get-all-sukien', danhmucController.handleGetAllSK);
+    router.post('/api/creat-info-sukien', danhmucController.handlecreateInforSK);
+    router.get('/api/get-detail-sukien-by-id', danhmucController.getDetailSKById);
+    ///ALL SIZE
+    router.get('/api/get-all-Size', monController.handleGetAllSize);
+    // router.get('/api/get-all-mon', monController.handleGetAllMon);
     //mon
+    router.post('/api/create-new-mon', monController.handlecreateNewMon);
     router.get('/api/get-all-mon', monController.handleGetAllMon);
+    router.put('/api/edit-mon', monController.handleEditMon);
+    router.delete('/api/delete-mon', monController.handleDeleteMon);
+    router.get('/api/get-mon-by-id_dm', monController.getMonByIdDM);
+    router.get('/api/all-mon-home', monController.getAllMonHome);
+    //khu-ban
+    router.get('/api/get-all-khu', khubanController.handleGetAllKhu);
+    router.get('/api/get-all-ban', khubanController.handleGetAllBan);
     return app.use("/", router);
 }
 

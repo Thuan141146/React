@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      tai_khoan.belongsTo(models.tai_khoan, { foreignKey: 'gioitinh', as: 'gioitinhData' })
+
     }
   };
   tai_khoan.init({

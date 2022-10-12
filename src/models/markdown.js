@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            Markdown.belongsTo(models.loai_sk, { foreignKey: 'sukienid' })
         }
     };
     Markdown.init({
@@ -22,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 
     }, {
         sequelize,
-        modelName: 'loai_sk',
+        modelName: 'Markdown',
     });
     return Markdown;
 };

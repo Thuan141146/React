@@ -20,7 +20,7 @@ module.exports = {
                 type: sequelize.TEXT('long'),
             },
             sukienid: {
-                allowNull: false,
+                allowNull: true,
                 type: sequelize.INTEGER,
             },
             anh: {

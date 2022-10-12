@@ -11,11 +11,13 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            mon.belongsTo(models.danh_muc, { foreignKey: 'ID_DM' })
         }
     };
     mon.init({
         ID_DM: DataTypes.INTEGER,
         TEN_MON: DataTypes.STRING,
+        SIZE: DataTypes.STRING,
         GIA: DataTypes.DECIMAL,
         ANH: DataTypes.BLOB,
         MO_TA: DataTypes.STRING,

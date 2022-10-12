@@ -18,6 +18,9 @@ module.exports = {
             TEN_MON: {
                 type: Sequelize.STRING(250)
             },
+            SIZE: {
+                type: Sequelize.STRING(250)
+            },
             GIA: {
                 type: Sequelize.DECIMAL
             },

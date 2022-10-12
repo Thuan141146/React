@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
+            loai_sk.hasOne(models.Markdown, { foreignKey: 'sukienid' })
             // define association here
         }
     };

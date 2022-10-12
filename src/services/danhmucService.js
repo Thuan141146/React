@@ -119,6 +119,110 @@ let getTopLoaiSKHome = (limitInput) => {
         }
     })
 }
+//get all su kien
+let getAllsukien = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let sukien = await db.loai_sk.findAll({
+                attributes: {
+                    exclude: ['ANH']
+                }
+            })
+            resolve({
+                errCode: 0,
+                data: sukien
+            })
+
+        } catch (e) {
+            reject(e)
+
+        }
+    })
+
+}
+//create info event
+let createInfoSK = (inputdata) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!inputdata.sukienid || !inputdata.contentHTML
+                || !inputdata.contentMarkdown || !inputdata.action) {
+                resolve({
+                    errCode: 1,
+                    errMessage: "Thiếu thông tin đầu vào !!"
+                })
+            } else {
+                if (inputdata.action === 'CREATE') {
+                    await db.Markdown.create({
+                        contentHTML: inputdata.contentHTML,
+                        contentMarkdown: inputdata.contentMarkdown,
+                        mota: inputdata.mota,
+                        sukienid: inputdata.sukienid,
+                    })
+                } else if (inputdata.action === 'EDIT') {
+                    let sukienMarkdown = await db.Markdown.findOne({
+                        where: { sukienid: inputdata.sukienid },
+                        raw: false
+                    })
+                    if (sukienMarkdown) {
+                        sukienMarkdown.contentHTML = inputdata.contentHTML;
+                        sukienMarkdown.contentMarkdown = inputdata.contentMarkdown;
+                        sukienMarkdown.mota = inputdata.mota;
+                        sukienMarkdown.updateAt = new Date();
+                        await sukienMarkdown.save()
+                    }
+                }
+
+                resolve({
+                    errCode: 0,
+                    errMessage: "Lưu thông tin sự kiện thành công"
+                })
+            }
+
+        } catch (e) {
+            reject(e);
+
+        }
+    })
+}
+///get getDetailSKById
+let DetailSKById = (inputId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!inputId) {
+                resolve({
+                    errCode: 1,
+                    errMessage: "Thiếu tham số đầu vào!!"
+                })
+            } else {
+                let data = await db.loai_sk.findOne({
+                    where: {
+                        id: inputId
+                    },
+                    include: [
+                        {
+                            model: db.Markdown,
+                            attributes: ['mota', 'contentHTML', 'contentMarkdown']
+                        }
+                    ],
+                    raw: false,
+                    nest: true
+
+                })
+                if (data && data.ANH) {
+                    data.ANH = new Buffer(data.ANH, 'base64').toString('binary');
+                }
+                if (!data) data = {};
+                resolve({
+                    errCode: 0,
+                    data: data
+                })
+            }
+
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
 module.exports = {
     GetAllDanhMuc: GetAllDanhMuc,
     createNewDanhMuc: createNewDanhMuc,
@@ -127,4 +231,7 @@ module.exports = {
     GetAllLoaiSK: GetAllLoaiSK,
     createNewLoaiSuKien: createNewLoaiSuKien,
     getTopLoaiSKHome: getTopLoaiSKHome,
+    getAllsukien: getAllsukien,
+    createInfoSK: createInfoSK,
+    DetailSKById: DetailSKById,
 }

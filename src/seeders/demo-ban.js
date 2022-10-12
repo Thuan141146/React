@@ -2,13 +2,10 @@
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.bulkInsert('mon', [{
-            ID_DM: '003',
-            TEN_MON: 'Trà vải',
-            GIA: '35000',
-            SIZE: 'L',
-            ANH: '',
-            MO_TA: 'Vị trà thanh mát',
+        return queryInterface.bulkInsert('ban', [{
+            ID_KV: '1',
+            SO_BAN: ' 1 ',
+            TT: 'Bàn có ổ cấm điện',
 
         }]);
 
